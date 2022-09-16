@@ -1,0 +1,16 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Not found
+{% endblock %}
+
+{% block body %}
+<div class="block">
+    <div class="line bottomborder">
+        <h1>No entry found for : "<strong style="color: dimgray;">{{ title }}</strong>"</h1>
+    </div>
+    <div class="line">
+        <p>Try something else or see the list with the existing ones here: <strong><a href="{% url 'index' %}">Home</a></strong></p>
+    </div>
+</div>
+{% endblock %}  

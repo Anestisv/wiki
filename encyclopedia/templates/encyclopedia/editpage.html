@@ -1,0 +1,65 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Edit entry
+{% endblock %}
+
+{% block body %}
+
+<div class="block">
+    <div class="line bottomborder">
+        <h1>Editing {{ title }}</h1>
+        <span>
+            <a href="#" role="button" class="popovers" data-toggle="popover" data-trigger="focus"
+                title="How to write Markdown?"
+                data-content=" Read <a href='https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax'>Github's Markdown guide</a>"><i
+                    class="fa fa-question-circle fa-2x" id="question"></i>
+            </a>
+        </span>
+    </div>
+    <script>
+        $("[data-toggle=popover]")
+            .popover({ html: true })
+            .on("focus", function () {
+                $(this).popover("show");
+            }).on("focusout", function () {
+                var _this = this;
+                if (!$(".popover:hover").length) {
+                    $(this).popover("hide");
+                }
+                else {
+                    $('.popover').mouseleave(function () {
+                        $(_this).popover("hide");
+                        $(this).off('mouseleave');
+                    });
+                }
+            });
+    </script>
+    <div class="line bottomborder">
+        <div class="block entrypage">
+            <form action="{% url 'save' %}" method="POST">
+                {% csrf_token %}
+                {{ eef.as_p }}
+                <input type="hidden" value="{{ title }}" name="hiddentitle">
+                <div class="bs">
+                    <button class="search" id="savechange" type="submit">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if message %}
+    <div class="line">
+        <header class="justify-content-center" style="display: inline-block;">
+            <div class="alert alert-danger alert-dismissible fade show text-center col-lg-12 col-sm-4 mt-4 mx-auto border-none"
+                role="alert">
+                <p style="margin: 0px;">{{ message }} <a href="/wiki/{{ entry }}"><strong>{{ entry }}</strong></a></p>
+                <button type="button" id="delete" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </header>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

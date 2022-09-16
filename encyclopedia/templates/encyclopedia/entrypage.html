@@ -1,0 +1,31 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    wiki - {{ title }}
+{% endblock %}
+
+{% block body %}
+<div class="block">
+    <div class="line bottomborder">
+        <h1>
+            {{ title }}
+        </h1>
+    </div>
+    <div class="line bottomborder">
+        <div class="block entrypage">
+            <div class="links">
+                {{ entry | safe }}
+            </div>
+        </div>
+    </div>
+    <div class="line up">
+        <div class="bs">
+            <form action="{% url 'editpage' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{ title }}" name="edittitle">
+                <button class="search" id="edit" type="submit" name="editbutton">Edit</button>
+            </form>
+        </div>    
+    </div>
+</div>
+{% endblock %}
