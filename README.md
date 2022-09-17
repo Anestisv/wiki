@@ -1,6 +1,6 @@
 # WIKI 🌐
 
-Project's video on Youtube :arrow_forward: [Wiki(Project 5 - CS50w)](https://youtu.be/83Mw6vzEzxg)
+Project's video on Youtube :arrow_forward: [Wiki(Project 1 - CS50w)](https://youtu.be/83Mw6vzEzxg)
 
 This is a project from `CS50’s Web Programming with Python and JavaScript` course.
 
